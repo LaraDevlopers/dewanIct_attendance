@@ -26,7 +26,7 @@ Route::group(['prefix' => 'result', 'as' => 'result.'], function() {
     Route::post('store', [resultController::class, 'store'])->name('store');
     Route::get('show', [resultController::class, 'show'])->name('show');
     Route::post('update', [resultController::class, 'update'])->name('update');
-    Route::get('delete', [resultController::class, 'index'])->name('delete');
+    Route::get('delete', [resultController::class, 'delete'])->name('delete');
     Route::get('search', [resultController::class, 'search'])->name('search');
 
 });

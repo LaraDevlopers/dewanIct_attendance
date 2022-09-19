@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('course_name');
             $table->string('course_duration');
             $table->string('passing_year');
+            $table->string('date_of_birth');
+            $table->string('s_image')->nullable();
 
 
             $table->timestamps();

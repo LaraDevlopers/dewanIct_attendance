@@ -42,6 +42,7 @@ student result store
                         <tr>
                             <th style="width: 30px;">#</th>
                             <th>Name</th>
+                            <th>Regestration No.</th>
                             <th>Course Name</th>
                             <th>Passing Year</th>
                             <th>Institute</th>
@@ -54,6 +55,7 @@ student result store
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $result->s_name }}</td>
+                                <td>{{ $result->reg_number }}</td>
                                 <td>{{ $result->course_name }}</td>
                                 <td>{{ $result->passing_year }}</td>
                                 <td>{{ $result->institute }}</td>
@@ -134,9 +136,16 @@ student result store
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label> Roll Number <span class="text-danger">*</span></label>
+                                <label> Student ID  <span class="text-danger">*</span></label>
                                 <input class="form-control" type="number" name="roll_no" id="roll_no">
                                 <span class="text-danger error roll_no_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label> Date of Birth  <span class="text-danger">*</span></label>
+                                <input class="form-control" type="date" name="date_of_birth" id="date_of_birth">
+                                <span class="text-danger error date_of_birth_error"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -179,6 +188,20 @@ student result store
                                 <label> Passing Year <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="passing_year" id="passing_year">
                                 <span class="text-danger error passing_year_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label> Passing Year <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="passing_year" id="passing_year">
+                                <span class="text-danger error passing_year_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label> Upload Student Image <span class="text-danger">*</span></label>
+                                <input class="form-control" type="file" name="s_image" id="s_image">
+                                <span class="text-danger error s_image_error"></span>
                             </div>
                         </div>
                     </div>
@@ -365,10 +388,13 @@ student result store
                     'id': id
                 },
                 success: function(response) {
-                    $('#delete').modal('hide');
-                    $('#delete').find('input').val('');
-                    toastr.success(response.success);
-                    $('#data_table').load(location.href + ' #data_table');
+                    if(response.success){
+
+                        $('#delete').modal('hide');
+                        $('#delete').find('input').val('');
+                        toastr.success(response.success);
+                        $('#data_table').load(location.href + ' #data_table');
+                    }
                 }
             });
         });

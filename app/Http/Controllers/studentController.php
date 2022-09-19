@@ -26,11 +26,13 @@ class studentController extends Controller
 
     //search by key up
     public function search_by_keyup(Request $request){
-        if(Result::where('reg_number', $request->reg_no)->exists()){
-            $result = Result::where('reg_number', $request->reg_no)->first();
-            return response()->json(['success' => $result]);
-        }else{
-            return response()->json(['invalid' => 'Registration number is Invalid']);
+        if($request->reg_no){
+            if(Result::where('reg_number', $request->reg_no)->exists()){
+                $result = Result::where('reg_number', $request->reg_no)->first();
+                return response()->json(['success' => $result]);
+            }else{
+                return response()->json(['invalid' => 'Registration number is Invalid']);
+            }
         }
     }
 }
