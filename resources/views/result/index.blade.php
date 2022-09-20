@@ -36,6 +36,8 @@ student result store
         </div>  --}}
         <div class="col-md-12">
             <div>
+                <div class="btn btn-primary " style="margin-bottom: 5px">EXPORT</div>
+                <div class="btn btn-danger " style="margin-bottom: 5px">IMPORT</div>
 
                 <table id="data_table" class="table table-striped custom-table mb-0 datatable text-center">
                     <thead>

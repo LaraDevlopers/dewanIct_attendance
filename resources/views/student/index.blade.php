@@ -393,7 +393,23 @@ student result
                             </table>
                         </div>
 
+                        <div class="col-md-12" style="margin-top: 80px">
+                            <div class="row "  >
+                                <div class="col-md-4" >
+                                    <h4 style="text-decoration:overline">DIRECTOR</h4>
+                                </div>
+                                <div class="col-md-4" align="center">
+                                    <h4 style="text-decoration:overline">Exam Controller</h4>
+                                </div>
+                                <div class="col-md-4" align='right' >
+                                    <h4 style="text-decoration:overline">CHAIRMAN</h4>
+                                </div>
 
+                                <div class="col-md-12 text-center mt-2">
+                                   <small> This Academic Transcript may be verified at www.cdewanict.com using the Academic Transcript holer registratio number</small>
+                                </div>
+                            </div>
+                        </div>
                    </div>
             </div>
         </div>
