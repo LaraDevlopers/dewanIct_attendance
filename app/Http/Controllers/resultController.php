@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\resultExport;
+use App\Imports\resultImport;
 use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image as Image;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 // use Image;
 
 class resultController extends Controller
@@ -85,6 +90,24 @@ class resultController extends Controller
         return response()->json(['success' => "Deleted Successfully"]);
     }
 
+    // Export
+    public function export(){
+        // return Excel::download(new resultExport, 'student.csv');
+         (new resultExport)->queue('student.csv');
+    }
+    //import
+    public function import(Request $request){
+        $validator = Validator::make($request->all(), [
+            's_result' => 'required',
+        ]);
+        if($validator->passes()){
+            Excel::import(new resultImport, $request->file('s_result'));
+                return response()->json(['success' => 'Imported Successflly!']);
+        }
+        else{
+            return response()->json(['errors' => $validator->errors()]);
+        }
+    }
 }
 
 

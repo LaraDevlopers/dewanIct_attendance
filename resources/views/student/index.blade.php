@@ -406,7 +406,7 @@ student result
                                 </div>
 
                                 <div class="col-md-12 text-center mt-2">
-                                   <small> This Academic Transcript may be verified at www.cdewanict.com using the Academic Transcript holer registratio number</small>
+                                   <small> This Academic Transcript may be verified at www.dewanict.com using the Academic Transcript holer registratio number</small>
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,7 @@ student result store
                 </ul>
             </div>
             <div class="col-auto float-end ms-auto">
-                <a href="#" class="btn add-btn"data-toggle="modal" data-target="#insert"><i
+                <a href="#" class="btn add-btn" data-toggle="modal" data-target="#insert"><i
                         class="fa fa-plus"></i> Add results</a>
             </div>
 
@@ -36,8 +36,8 @@ student result store
         </div>  --}}
         <div class="col-md-12">
             <div>
-                <div class="btn btn-primary " style="margin-bottom: 5px">EXPORT</div>
-                <div class="btn btn-danger " style="margin-bottom: 5px">IMPORT</div>
+                <a href="{{route('result.export')}}" class="btn btn-primary " style="margin-bottom: 5px">EXPORT</a>
+                <a class="btn btn-danger " data-toggle="modal" data-target="#import" style="margin-bottom: 5px">IMPORT</a>
 
                 <table id="data_table" class="table table-striped custom-table mb-0 datatable text-center">
                     <thead>
@@ -218,7 +218,7 @@ student result store
 </div>
 
 
-<div id="edit" class="modal custom-modal fade" role="dialog">
+{{--  <div id="edit" class="modal custom-modal fade" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -243,15 +243,32 @@ student result store
                         <input class="form-control" type="number" name="result_mark" id="edit_result_mark">
                         <span class="text-danger error result_mark_error"></span>
                     </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  --}}
 
+<div id="import" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Student Result</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="import_form">
+                {{--  <form id="" action="{{route('result.import')}}" method="post" enctype="multipart/form-data">  --}}
+                    @csrf
                     <div class="form-group">
-                        <label>Select Class <span class="text-danger">*</span></label>
-                        <select class=" form-control" name="ClassModel_id" id="edit_ClassModel_id">
-                            {{--  @foreach ($classes as $class)
-                                <option value="{{ $class->id }}">{{ $class->class_name }}</option>
-                            @endforeach  --}}
-                        </select>
-                        <span class="text-danger error ClassModel_id_error"></span>
+                        <label>Upload Your Studen Result File <span class="text-danger">*</span></label>
+                        <input class="form-control" type="file" name="s_result" id="s_result">
+                        <span class="text-danger error s_result_error"></span>
                     </div>
 
                     <div class="submit-section">
@@ -412,6 +429,36 @@ student result store
                     if(response.not_found){
                             $('#data_table').html("<span class='text-danger'>" + response
                             .not_found + "</span>");
+                    }
+                }
+            });
+        });
+
+
+        //import
+          // insert data
+          $('#import_form').submit(function(e) {
+            e.preventDefault();
+            let insert_data = new FormData($('#import_form')[0]);
+            $.ajax({
+                type: 'post',
+                url: "{{ route('result.import') }}",
+                data: insert_data,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        $('#import').modal('hide');
+                        $('#import').find('input').val('');
+                        $('.error').text('');
+                        toastr.success(response.success);
+                        $('#data_table').load(location.href + ' #data_table');
+                    }
+                    if (response.errors) {
+                        $.each(response.errors, function(key, value) {
+                            $('.' + key + '_error').text(value);
+                        });
                     }
                 }
             });

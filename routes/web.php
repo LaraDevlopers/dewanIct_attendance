@@ -28,6 +28,8 @@ Route::group(['prefix' => 'result', 'as' => 'result.'], function() {
     Route::post('update', [resultController::class, 'update'])->name('update');
     Route::get('delete', [resultController::class, 'delete'])->name('delete');
     Route::get('search', [resultController::class, 'search'])->name('search');
+    Route::get('export', [resultController::class, 'export'])->name('export');
+    Route::post('import', [resultController::class, 'import'])->name('import');
 
 });
 
