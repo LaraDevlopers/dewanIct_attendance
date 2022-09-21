@@ -4,24 +4,14 @@
     <!-- Logo -->
     <div class="header-left">
         <a href="{{route('home')}}" class="logo">
-            <img src="assets/img/logo.png" width="40" height="40" alt="">
-            
+            <img src="{{asset('assets/img/dewanictlogo.png')}}" style="width: 100%;height: 163px; margin-top: -50px;" alt="">
         </a>
     </div>
     <!-- /Logo -->
 
-    <a id="toggle_btn" href="javascript:void(0);">
-        <span class="bar-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-    </a>
 
     <!-- Header Title -->
-    <div class="page-title-box">
-        <h3>Dreamguy Technologies</h3>
-    </div>
+
     <!-- /Header Title -->
 
     <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
