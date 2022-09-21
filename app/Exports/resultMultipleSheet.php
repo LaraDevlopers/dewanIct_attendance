@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class resultMultipleSheet implements FromQuery, WithTitle, WithHeadings, ShouldAutoSize
+class resultMultipleSheet implements FromQuery, WithTitle, ShouldAutoSize
 {
     private $month;
     private $year;
@@ -41,23 +41,23 @@ class resultMultipleSheet implements FromQuery, WithTitle, WithHeadings, ShouldA
         return DateTime::createFromFormat('m', $this->month)->format('F');
     }
 
-    public function headings(): array
-    {
-       return [
-            '#',
-            'REG NO',
-            'ID NO',
-            'Name',
-            'MOTHER NAME',
-            'FATHER NAME',
-            'INSTITUTE',
-            'INSTITUTE CODE',
-            'COURSE NAME',
-            'COURSE DURATION',
-            'PASSING YEAR',
-            'DATE OF BIRTH',
-            'CREATE AT',
-            'UPDATED AT',
-        ];
-    }
+    // public function headings(): array
+    // {
+    //    return [
+    //         '#',
+    //         'REG NO',
+    //         'ID NO',
+    //         'Name',
+    //         'MOTHER NAME',
+    //         'FATHER NAME',
+    //         'INSTITUTE',
+    //         'INSTITUTE CODE',
+    //         'COURSE NAME',
+    //         'COURSE DURATION',
+    //         'PASSING YEAR',
+    //         'DATE OF BIRTH',
+    //         'CREATE AT',
+    //         'UPDATED AT',
+    //     ];
+    // }
 }

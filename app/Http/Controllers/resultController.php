@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\resultExport;
 use App\Exports\testExport;
 use App\Imports\resultImport;
+use App\Imports\resultMultipleSheet;
 use App\Models\Result;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
@@ -102,16 +103,21 @@ class resultController extends Controller
     }
     //import
     public function import(Request $request){
-        $validator = Validator::make($request->all(), [
-            's_result' => 'required',
-        ]);
-        if($validator->passes()){
-            Excel::import(new resultImport, $request->file('s_result'));
-                return response()->json(['success' => 'Imported Successflly!']);
-        }
-        else{
-            return response()->json(['errors' => $validator->errors()]);
-        }
+
+        Excel::import(new resultMultipleSheet, $request->file('s_result'));
+        // return back();
+        // $validator = Validator::make($request->all(), [
+        //     's_result' => 'required',
+        // ]);
+        // if($validator->passes()){
+        //     // Excel::import(new resultImport, $request->file('s_result'));
+
+        //     Excel::import(new resultMultipleSheet, $request->file('s_result'));
+        //         return response()->json(['success' => 'Imported Successflly!']);
+        // }
+        // else{
+        //     return response()->json(['errors' => $validator->errors()]);
+        // }
     }
 }
 
