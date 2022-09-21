@@ -5,6 +5,7 @@
     <div class="header-left">
         <a href="{{route('home')}}" class="logo">
             <img src="assets/img/logo.png" width="40" height="40" alt="">
+            
         </a>
     </div>
     <!-- /Logo -->
@@ -19,7 +20,7 @@
 
     <!-- Header Title -->
     <div class="page-title-box">
-        <h3>Dreamguy's Technologies</h3>
+        <h3>Dreamguy Technologies</h3>
     </div>
     <!-- /Header Title -->
 
