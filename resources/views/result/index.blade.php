@@ -262,8 +262,8 @@ student result store
                 </button>
             </div>
             <div class="modal-body">
-                {{--  <form id="import_form">  --}}
-                <form id="" action="{{route('result.import')}}" method="post" enctype="multipart/form-data">
+                <form id="import_form">
+                {{--  <form id="" action="{{route('result.import')}}" method="post" enctype="multipart/form-data">  --}}
                     @csrf
                     <div class="form-group">
                         <label>Upload Your Studen Result File <span class="text-danger">*</span></label>
