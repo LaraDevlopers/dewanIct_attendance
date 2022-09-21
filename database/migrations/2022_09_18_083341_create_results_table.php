@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->integer('reg_number');
+            $table->integer('reg_number')->unique();
             $table->integer('roll_no');
             $table->string('s_name');
             $table->string('f_name');

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Exports\resultExport;
+use App\Exports\student_result_export;
 use App\Exports\testExport;
 use App\Imports\resultImport;
+use App\Imports\resultMultipleSheet;
+use App\Imports\student_result_export as ImportsStudent_result_export;
+use App\Imports\student_result_import;
 use App\Models\Result;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
@@ -95,18 +99,23 @@ class resultController extends Controller
     // Export
     public function export(){
         // return (new resultExport(2022))->download('student.xlsx');
-        $year = 2022;
-        return Excel::download(new resultExport($year), $year.'.xlsx');
+
+        return Excel::download(new student_result_export, 'studentResult.xlsx');
         // return Excel::download(new testExport, 'test_export.xlsx');
         //   response()->json(['success', 'Successfully Download']);
     }
     //import
     public function import(Request $request){
+
+        // Excel::import(new student_result_import, $request->file('s_result'));
+        // return back();
         $validator = Validator::make($request->all(), [
             's_result' => 'required',
         ]);
         if($validator->passes()){
-            Excel::import(new resultImport, $request->file('s_result'));
+            // Excel::import(new resultImport, $request->file('s_result'));
+
+            Excel::import(new student_result_import, $request->file('s_result'));
                 return response()->json(['success' => 'Imported Successflly!']);
         }
         else{

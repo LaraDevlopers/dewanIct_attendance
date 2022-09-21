@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -24,7 +23,7 @@ class resultSeeder extends Seeder
                 's_name' => $faker->text(30),
                 'f_name' => $faker->text(30),
                 'm_name' => $faker->text(30),
-                'cgpa' => rand(0,4),
+                'cgpa' => rand(1,4),
                 'institute' => $faker->text(30),
                 'institute_code' => 50679,
                 'course_name' => $faker->text(30),
