@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\resultExport;
+use App\Exports\testExport;
 use App\Imports\resultImport;
 use App\Models\Result;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -92,8 +94,11 @@ class resultController extends Controller
 
     // Export
     public function export(){
-        // return Excel::download(new resultExport, 'student.csv');
-         (new resultExport)->queue('student.csv');
+        // return (new resultExport(2022))->download('student.xlsx');
+        $year = 2022;
+        return Excel::download(new resultExport($year), $year.'.xlsx');
+        // return Excel::download(new testExport, 'test_export.xlsx');
+        //   response()->json(['success', 'Successfully Download']);
     }
     //import
     public function import(Request $request){

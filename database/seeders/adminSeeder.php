@@ -17,7 +17,7 @@ class adminSeeder extends Seeder
      */
     public function run()
     {
-        //admin seeder
+        // admin seeder
         if(!User::where('email', 'admin@gmail.com')->first()){
             DB::table('users')->insert([
                 'name' => 'Admin',

@@ -2,23 +2,33 @@
 
 namespace App\Exports;
 
-use App\Models\Result;
-use Carbon\Carbon;
+
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class resultExport implements FromQuery
+
+class resultExport implements WithMultipleSheets
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-
     use Exportable;
 
-    public function query()
+    protected $year;
+
+    public function __construct(int $year)
     {
-    return Result::query();
+        $this->year = $year;
+    }
+
+    /**
+     * @return array
+     */
+    public function sheets(): array
+    {
+        $sheets = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $sheets[] = new resultMultipleSheet($this->year, $month);
+        }
+
+        return $sheets;
     }
 }
